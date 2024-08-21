@@ -63,9 +63,76 @@ stems from several key observations:
   incrementally. Training students to think in this way prepares them
   for challenges beyond the classroom.
 
+Installing LazyLM
+
+`pip install lazy_lm`
+
+Using LazyLM
+
+``` python
+from dotenv import load_dotenv
+import os
+from anthropic import AnthropicVertex
+from lazy_lm.core import lazy
+
+load_dotenv()
+project_id = os.getenv("PROJECT_ID")
+location = os.getenv("PROJECT_LOCATION")
+```
+
+``` python
+# Initalize the Anthropic client
+client = AnthropicVertex(project_id=project_id, region=location)
+lazy_lm = client.lazy("What is the derivative of `2x^3 + x^2 + 2x + 1`? Give me the solution step-by-step")
+```
+
+``` python
+# Get the current step
+print(lazy_lm.get_current_step())
+```
+
+    What is the derivative of `2x^3 + x^2 + 2x + 1`? Give me the solution step-by-step
+
+``` python
+# Get the next step
+print(lazy_lm.get_next_step())
+```
+
+    To find the derivative of the given function, we'll use the power rule and the constant rule of differentiation. Let's start with the first term:
+
+    Step 1: Find the derivative of 2x^3
+
+    The power rule states that for a term ax^n, the derivative is nax^(n-1).
+    For 2x^3, we have:
+    a = 2, n = 3
+    So, the derivative of 2x^
+
+``` python
+# Query the current step
+print(lazy_lm.ask_question("I don't understand this step"))
+```
+
+    I apologize for any confusion. I'd be happy to explain this step in more detail without advancing to the next step.
+
+    In this step, we're focusing on finding the derivative of the first term in the given expression, which is 2x^3.
+
+    To do this, we're using the power rule of differentiation. The power rule states that for a term in the form ax^n (where 'a' is a constant and 'n' is the power
+
+``` python
+# Get the next step
+print(lazy_lm.get_next_step())
+```
+
+    Step 2: Complete the derivative of 2x^3
+
+    Continuing from the previous step, we apply the power rule to 2x^3:
+
+    The derivative of 2x^3 is:
+    3 · 2x^(3-1) = 3 · 2x^2 = 6x^2
+
 ## Understanding Lazy Evaluation
 
-## A Note on Lazy Evaluation in Programming
+### A Note on Lazy Evaluation in Programming
 
 The concept of lazy evaluation is well-established in functional
 programming languages, where the evaluation of an expression is only
