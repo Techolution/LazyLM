@@ -5,7 +5,6 @@ __all__ = ['lazy_system_p', 'LazyState', 'LLM', 'LazyEvaluationClient']
 
 # %% ../nbs/00_core.ipynb 3
 from dotenv import load_dotenv
-import os
 from anthropic import AnthropicVertex
 from anthropic.types import (
     MessageParam,
@@ -22,6 +21,7 @@ from typing import (
     List,
     Optional
 )
+import os
 from nbdev.showdoc import show_doc
 
 # %% ../nbs/00_core.ipynb 7
@@ -160,5 +160,5 @@ def lazy(self: AnthropicVertex, problem: str) -> LazyEvaluationClient:
     Entry point of the LazyLM Framework for the `AnthropicVertex` client API
     """
     state = LazyState(problem=problem)
-    llm = LLM(client=self, model=model)
+    llm = LLM(client=self, model="claude-3-5-sonnet@20240620")
     return LazyEvaluationClient(llm=llm, state=state)
