@@ -1,0 +1,9 @@
+project:
+  output-dir: _docs
+
+website:
+  title: "lazy_lm"
+  site-url: "https://Techolution.github.io/lazy_lm"
+  description: "A prompting framework for 'lazy' evaluation of a language model reasoning trace"
+  repo-branch: main
+  repo-url: "https://github.com/Techolution/lazy_lm"
